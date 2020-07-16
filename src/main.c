@@ -11,7 +11,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <sys/types.h>
-#include <string.h>
+#include <sys/wait.h>
 
 int e_primo(int n){
 	if (n == 1) return 0;

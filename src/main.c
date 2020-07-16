@@ -42,12 +42,13 @@ int main() {
 
   unsigned int *numbers = (unsigned int*) mmap(NULL, size*sizeof(unsigned int), PROT_EXEC+PROT_READ + PROT_WRITE, MAP_SHARED + MAP_ANONYMOUS, -1, 0);
   int *primes = (int*) mmap(NULL, size*sizeof(int), PROT_EXEC+PROT_READ + PROT_WRITE, MAP_SHARED + MAP_ANONYMOUS, -1, 0);
-  pid_t fork1 = fork();
   int i; 
   for (i = 0; i < size; i++){
   	numbers[i] = n[i];
 	primes[i] = -1;
   }
+  free(n);
+  pid_t fork1 = fork();
   if (fork1 == 0){
 	  int i;
 	  for (i = 0; i < size; i++){
@@ -96,5 +97,7 @@ int main() {
 	  c += primes[i];
   }
   printf("%u\n", c);
+  munmap(primes, size*sizeof(int));
+  munmap(numbers, size*sizeof(int));
   return 0;
 }

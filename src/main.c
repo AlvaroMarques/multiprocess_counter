@@ -13,11 +13,11 @@
 #include <sys/types.h>
 #include <sys/wait.h>
 
-int e_primo(int n){
+int e_primo(unsigned int n){
 	if (n == 1) return 0;
 	if (n == 2) return 1;
 	if (n % 2 == 0) return 0;
-	int tmp = n/3;
+	unsigned tmp = n/3;
 	while (tmp > 2){
 		if (n % tmp == 0){
 			return 0;
